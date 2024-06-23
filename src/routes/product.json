@@ -2,8 +2,17 @@
     "id": "prod_01G1G5V2MBA328390B5AXJ610F",
     "title": "T-Shirt",
     "description": "High-quality cotton t-shirt available in various colors and sizes.",
-    "image": "https://cdn.dummyjson.com/products/images/clothing/T-Shirt/thumbnail.png",
     "discount": 10,
+    "thumbnails": [
+        "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/thumbnail.png",
+        "https://cdn.dummyjson.com/products/images/furniture/Bedside%20Table%20African%20Cherry/thumbnail.png",
+        "https://cdn.dummyjson.com/products/images/groceries/Cat%20Food/thumbnail.png"
+    ],
+    "images": [
+        "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/thumbnail.png",
+        "https://cdn.dummyjson.com/products/images/furniture/Bedside%20Table%20African%20Cherry/thumbnail.png",
+        "https://cdn.dummyjson.com/products/images/groceries/Cat%20Food/thumbnail.png"
+    ],
     "attributes": [
         {
             "title": "color",
@@ -32,17 +41,18 @@
                 "color": "Black",
                 "size": "M"
             },
+            "image": 1,
             "price": 43.68,
-            "stock": 100
+            "stock": true
         },
         {
             "options": {
                 "color": "Black",
                 "size": "L"
             },
-            "image": "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/thumbnail.png",
+            "image": 2,
             "price": 27.21,
-            "stock": 75,
+            "stock": false,
             "title": "T-Shirt Black L",
             "discount": 15
         },
@@ -51,27 +61,27 @@
                 "color": "White",
                 "size": "M"
             },
-            "image": "https://cdn.dummyjson.com/products/images/furniture/Bedside%20Table%20African%20Cherry/thumbnail.png",
+            "image": 1,
             "price": 12.99,
-            "stock": 50
+            "stock": false
         },
         {
             "options": {
                 "color": "White",
                 "size": "L"
             },
-            "image": "https://cdn.dummyjson.com/products/images/groceries/Apple/thumbnail.png",
+            "image": 0,
             "price": 19.99,
-            "stock": 25
+            "stock": true
         },
         {
             "options": {
                 "color": "White",
                 "size": "XL"
             },
-            "image": "https://cdn.dummyjson.com/products/images/groceries/Cooking%20Oil/thumbnail.png",
+            "image": 2,
             "price": 19.99,
-            "stock": 25,
+            "stock": true,
             "title": "T-Shirt White XL"
         },
         {
@@ -79,9 +89,9 @@
                 "color": "Gray",
                 "size": "L"
             },
-            "image": "https://cdn.dummyjson.com/products/images/groceries/Cat%20Food/thumbnail.png",
+            "image": 0,
             "price": 19.99,
-            "stock": 25
+            "stock": true
         }
     ]
 }
