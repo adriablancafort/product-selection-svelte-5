@@ -94,8 +94,7 @@
 {#if selectedVariant.stock}
     <button
         class="bg-blue-500 text-white px-4 py-2 rounded"
-        onclick={() => addToCart(product.id, selectedVariant.options, quantity)}
-    >
+        onclick={() => { addToCart(product.id, selectedVariant.options, quantity); quantity = 1; }}    >
         Add to Cart
     </button>
 {:else}
