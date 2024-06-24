@@ -1,20 +1,34 @@
 <script>
     import product from "./product.json";
 
-    let selectedVariant = $state(product.variants[0]);
-    let selectedImage = $state(0);
     let mouseX = $state(0);
     let mouseY = $state(0);
-    
-    function selectVariant(attributeSlug, option) {
-        selectedVariant = product.variants.find(variant => variant.options[attributeSlug] === option);
-        selectedImage = selectedVariant.image ? selectedVariant.image - 1 : selectedImage;
-    }
+    let selectedImage = $state(0);
+    let selectedVariant = $state(product.variants[0]);
 
     function zoomIn(event) {
         const { left, top, width, height } = event.target.getBoundingClientRect();
         mouseX = ((event.pageX - left) / width) * 100;
         mouseY = ((event.pageY - top) / height) * 100;
+    }
+
+    function availableOption(slug) {
+        // For every option, get all distinct option values that appear in the variants
+        return [...new Set(product.variants.map(variant => variant.options[slug]))];
+    }
+
+    function existsVariant(slug, option) {
+        return product.variants.some(variant => 
+            Object.keys(selectedVariant.options).every(key => 
+                // Each option value matches the selectedVariant and the option value of the option "slug" matches the current option
+                variant.options[key] === (key !== slug ? selectedVariant.options[key] : option)
+            )
+        );
+    }
+
+    function selectVariant(slug, option) {
+        selectedVariant = product.variants.find(variant => variant.options[slug] === option);
+        selectedImage = selectedVariant.image ? selectedVariant.image - 1 : selectedImage;
     }
 </script>
 
@@ -42,18 +56,16 @@
 
 <h1 class="text-4xl">{selectedVariant.title || product.title}</h1>
 <p>Price: ${selectedVariant.price || product.price}</p>
-<p
-    class="{selectedVariant.stock || product.stock ? "text-green-500" : "text-red-500"}"
->
+<p class="{selectedVariant.stock || product.stock ? "text-green-500" : "text-red-500"}">
     {selectedVariant.stock || product.stock ? "In Stock" : "Out of Stock"}
 </p>
 
 {#each product.attributes as attribute}
     <p>Select {attribute.title}:</p>
     <div class="flex space-x-2 py-2">
-        {#each attribute.options as option}
+        {#each availableOption(attribute.slug) as option}
             <button
-                class="px-4 {option === selectedVariant.options[attribute.slug] ? "ring" : ""}"
+                class="px-4 {option === selectedVariant.options[attribute.slug] ? "ring" : ""} {existsVariant(attribute.slug, option) ? "" : "text-gray-400"}"
                 onclick={() => selectVariant(attribute.slug, option)}
             >
                 {option}
