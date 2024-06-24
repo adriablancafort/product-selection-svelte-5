@@ -5,6 +5,7 @@
     let mouseY = $state(0);
     let selectedImage = $state(0);
     let selectedVariant = $state(product.variants[0]);
+    let quantity = $state(1);
 
     function zoomIn(event) {
         const { left, top, width, height } = event.target.getBoundingClientRect();
@@ -12,29 +13,41 @@
         mouseY = ((event.pageY - top) / height) * 100;
     }
 
-    function availableOption(slug) {
+    function availableOptions(slug) {
         // For every option, get all distinct option values that appear in the variants
         return [...new Set(product.variants.map(variant => variant.options[slug]))];
     }
 
-    function existsVariant(slug, option) {
+    function existsVariant(slug, value) {
         return product.variants.some(variant => 
             Object.keys(selectedVariant.options).every(key => 
-                // Each option value matches the selectedVariant and the option value of the option "slug" matches the current option
-                variant.options[key] === (key !== slug ? selectedVariant.options[key] : option)
+                // Each option value matches the selectedVariant except for the option value of the option "slug", that matches the given value
+                key === slug ? variant.options[key] === value : variant.options[key] === selectedVariant.options[key]
             )
         );
     }
 
-    function selectVariant(slug, option) {
-        selectedVariant = product.variants.find(variant => variant.options[slug] === option);
+    function selectVariant(slug, value) {
+        selectedVariant = product.variants.find(variant =>
+            Object.keys(selectedVariant.options).every(key =>
+                // Each option value matches the selectedVariant except for the option value of the option "slug", that matches the given value
+                key === slug ? variant.options[key] === value : variant.options[key] === selectedVariant.options[key]
+            )
+        // If no variants match the selected options, assign a variant that matches just the selected value
+        ) || product.variants.find(variant => variant.options[slug] === value);
+
+        // Update selectedImage based on the new selectedVariant
         selectedImage = selectedVariant.image ? selectedVariant.image - 1 : selectedImage;
+    }
+
+    function addToCart(id, options, quantity) {
+        console.log("Added to cart", id, options, quantity);
     }
 </script>
 
 <p>Discount: <span class="text-white bg-red-500 px-2">-{selectedVariant.discount || product.discount}%</span></p>
 <div class="overflow-hidden">
-    <img 
+    <img
         src="{product.images[selectedImage]}" 
         alt="{selectedVariant.title || product.title}"
         class="zoom-image"
@@ -63,7 +76,7 @@
 {#each product.attributes as attribute}
     <p>Select {attribute.title}:</p>
     <div class="flex space-x-2 py-2">
-        {#each availableOption(attribute.slug) as option}
+        {#each availableOptions(attribute.slug) as option}
             <button
                 class="px-4 {option === selectedVariant.options[attribute.slug] ? "ring" : ""} {existsVariant(attribute.slug, option) ? "" : "text-gray-400"}"
                 onclick={() => selectVariant(attribute.slug, option)}
@@ -74,8 +87,17 @@
     </div>
 {/each}
 
+<label for="quantity">Quantity:</label>
+<input type="number" min="1" value="{quantity}" oninput={() => quantity = event.target.value}>
+<br>
+
 {#if selectedVariant.stock}
-    <button class="bg-blue-500 text-white px-4 py-2 rounded">Add to Cart</button>
+    <button
+        class="bg-blue-500 text-white px-4 py-2 rounded"
+        onclick={() => addToCart(product.id, selectedVariant.options, quantity)}
+    >
+        Add to Cart
+    </button>
 {:else}
     <button class="bg-gray-500 text-white px-4 py-2 rounded cursor-not-allowed" disabled>Out of Stock</button>
 {/if}
