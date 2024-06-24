@@ -2,15 +2,15 @@
     import product from "./product.json";
 
     let selectedVariant = $state(product.variants[0]);
-    let selectedImage = $state(product.variants[0].image || 0);
+    let selectedImage = $state(0);
     let mouseX = $state(0);
     let mouseY = $state(0);
-
+    
     function selectVariant(attributeSlug, option) {
         selectedVariant = product.variants.find(variant => variant.options[attributeSlug] === option);
-        selectedImage = selectedVariant.image || selectedImage;
+        selectedImage = selectedVariant.image ? selectedVariant.image - 1 : selectedImage;
     }
-    
+
     function zoomIn(event) {
         const { left, top, width, height } = event.target.getBoundingClientRect();
         mouseX = ((event.pageX - left) / width) * 100;

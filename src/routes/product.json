@@ -61,7 +61,7 @@
                 "color": "White",
                 "size": "M"
             },
-            "image": 1,
+            "image": 2,
             "price": 12.99,
             "stock": false
         },
@@ -70,8 +70,8 @@
                 "color": "White",
                 "size": "L"
             },
-            "image": 0,
-            "price": 19.99,
+            "image": 1,
+            "price": 14.99,
             "stock": true
         },
         {
@@ -79,7 +79,7 @@
                 "color": "White",
                 "size": "XL"
             },
-            "image": 2,
+            "image": 3,
             "price": 19.99,
             "stock": true,
             "title": "T-Shirt White XL"
@@ -89,7 +89,16 @@
                 "color": "Gray",
                 "size": "L"
             },
-            "image": 0,
+            "image": 2,
+            "price": 19.99,
+            "stock": true
+        },
+        {
+            "options": {
+                "color": "Gray",
+                "size": "M"
+            },
+            "image": 1,
             "price": 19.99,
             "stock": true
         }
