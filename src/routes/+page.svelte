@@ -93,7 +93,7 @@
 {#if selectedVariant.stock}
     <button
         class="bg-blue-500 text-white px-4 py-2 rounded"
-        onclick={() => cart.addToCart( product.id, selectedVariant.options, quantity )}
+        onclick={() => cart.addToCart( product.id, selectedVariant.options, quantity, selectedVariant.price || product.price)}
     >
         Add to Cart
     </button>
