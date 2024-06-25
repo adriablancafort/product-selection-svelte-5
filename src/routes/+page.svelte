@@ -1,5 +1,7 @@
 <script>
     import product from "./product.json";
+    import Cart from "$lib/cart.svelte";
+    import { cart } from "$lib/cart.svelte.js";
 
     let mouseX = $state(0);
     let mouseY = $state(0);
@@ -39,10 +41,6 @@
         // Update selectedImage based on the new selectedVariant
         selectedImage = selectedVariant.image ? selectedVariant.image - 1 : selectedImage;
     }
-
-    function addToCart(id, options, quantity) {
-        console.log("Added to cart", id, options, quantity);
-    }
 </script>
 
 <p>Discount: <span class="text-white bg-red-500 px-2">-{selectedVariant.discount || product.discount}%</span></p>
@@ -72,6 +70,7 @@
 <p class="{selectedVariant.stock || product.stock ? "text-green-500" : "text-red-500"}">
     {selectedVariant.stock || product.stock ? "In Stock" : "Out of Stock"}
 </p>
+<p>{selectedVariant.description || product.description}</p>
 
 {#each product.attributes as attribute}
     <p>Select {attribute.title}:</p>
@@ -94,12 +93,15 @@
 {#if selectedVariant.stock}
     <button
         class="bg-blue-500 text-white px-4 py-2 rounded"
-        onclick={() => { addToCart(product.id, selectedVariant.options, quantity); quantity = 1; }}    >
+        onclick={() => cart.addToCart( product.id, selectedVariant.options, quantity )}
+    >
         Add to Cart
     </button>
 {:else}
     <button class="bg-gray-500 text-white px-4 py-2 rounded cursor-not-allowed" disabled>Out of Stock</button>
 {/if}
+
+<Cart />
 
 <style>
     .zoom-image {
