@@ -14,7 +14,7 @@
     </li>
 {/snippet}
 
-<div class="absolute top-0 right-0">
+<div class="absolute top-0 right-0 {cart.open ? "" : "hidden"}">
     <h2>Cart</h2>
     <ul>
         {#each cart.items as item}
@@ -24,3 +24,9 @@
     <p>Items: {cart.numItems}</p>
     <p>Total: {cart.total}</p>
 </div>
+
+<dialog>
+    <h2>Delete?</h2>
+    <button></button>
+    <button></button>
+</dialog>

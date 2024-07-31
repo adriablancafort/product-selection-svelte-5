@@ -1,13 +1,15 @@
 function createCart() {
   let items = $state([]);
+  let open = $derived(items.length > 0);
   let numItems = $state(0);
   let total = $state(0);
 
   function addToCart(id, options, quantity, price) {
+    quantity = Number(quantity);
     const found = items.findIndex(item => item.id === id && JSON.stringify(item.options) === JSON.stringify(options));
     if (found !== -1) {
       // Already in cart
-      items[found].quantity += quantity;
+      items[found].quantity += Number(quantity);
     } else {
       // Not in cart
       items.push({id, options, quantity, price});
@@ -29,6 +31,9 @@ function createCart() {
   return {
     get items() {
       return items;
+    },
+    get open() {
+      return open;
     },
     get numItems() {
       return numItems;
