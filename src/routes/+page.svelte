@@ -1,7 +1,6 @@
 <script>
     import product from "./product.json";
     import Cart from "$lib/cart.svelte";
-    import Sections from "../lib/sections.svelte";
     import { cart } from "$lib/cart.svelte.js";
 
     let mouseX = $state(0);
@@ -101,8 +100,6 @@
 {:else}
     <button class="bg-gray-500 text-white px-4 py-2 rounded cursor-not-allowed" disabled>Out of Stock</button>
 {/if}
-
-<Sections />
 
 <Cart />
 
