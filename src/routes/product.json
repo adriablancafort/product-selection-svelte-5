@@ -17,36 +17,28 @@
         {
             "title": "color",
             "slug": "color",
-            "type": "text",
-            "options": [
-                "Black",
-                "White",
-                "Gray"
-            ]
+            "type": "text"
         },
         {
             "title": "size",
             "slug": "size",
-            "type": "text",
-            "options": [
-                "M",
-                "L",
-                "XL"
-            ]
+            "type": "text"
         }
     ],
     "variants": [
         {
-            "options": {
+            "attributes": {
                 "color": "Black",
                 "size": "M"
             },
             "image": 1,
             "price": 43.68,
-            "stock": true
+            "stock": true,
+            "title": "T-Shirt Black M",
+            "discount": 0
         },
         {
-            "options": {
+            "attributes": {
                 "color": "Black",
                 "size": "L"
             },
@@ -57,50 +49,59 @@
             "discount": 15
         },
         {
-            "options": {
+            "attributes": {
                 "color": "White",
                 "size": "M"
             },
             "image": 2,
             "price": 12.99,
-            "stock": false
+            "stock": false,
+            "title": "T-Shirt White M",
+            "discount": 0
         },
         {
-            "options": {
+            "attributes": {
                 "color": "White",
                 "size": "L"
             },
             "image": 1,
             "price": 14.99,
-            "stock": true
+            "stock": true,
+            "title": "T-Shirt White L",
+            "discount": 0
         },
         {
-            "options": {
+            "attributes": {
                 "color": "White",
                 "size": "XL"
             },
             "image": 3,
             "price": 19.99,
             "stock": true,
-            "title": "T-Shirt White XL"
+            "title": "T-Shirt White XL",
+            "discount": 0
         },
         {
-            "options": {
+            "attributes": {
                 "color": "Gray",
                 "size": "L"
             },
             "image": 2,
             "price": 19.99,
-            "stock": true
+            "stock": true,
+            "title": "T-Shirt Gray L",
+            "discount": 0
         },
         {
-            "options": {
+            "attributes": {
                 "color": "Gray",
                 "size": "M"
             },
             "image": 1,
             "price": 19.99,
-            "stock": true
+            "stock": true,
+            "title": "T-Shirt Gray M",
+            "discount": 0
         }
     ]
 }
