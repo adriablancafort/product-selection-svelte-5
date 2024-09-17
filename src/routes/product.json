@@ -57,7 +57,7 @@
             "price": 12.99,
             "stock": false,
             "title": "T-Shirt White M",
-            "discount": 0
+            "discount": 10
         },
         {
             "attributes": {
@@ -68,7 +68,7 @@
             "price": 14.99,
             "stock": true,
             "title": "T-Shirt White L",
-            "discount": 0
+            "discount": 2
         },
         {
             "attributes": {
@@ -79,7 +79,7 @@
             "price": 19.99,
             "stock": true,
             "title": "T-Shirt White XL",
-            "discount": 0
+            "discount": 30
         },
         {
             "attributes": {
@@ -101,7 +101,7 @@
             "price": 19.99,
             "stock": true,
             "title": "T-Shirt Gray M",
-            "discount": 0
+            "discount": 15
         }
     ]
 }
