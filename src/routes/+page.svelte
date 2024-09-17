@@ -18,14 +18,9 @@
     }
 
     function availableOptions(slug) {
-        // For every option, get all distinct option values that appear in the variants
+        // For every attribute, return a set with all the distinct options that appear in the variants
         return new Set(product.variants.map(variant => variant.options[slug]))
     }
-
-    let attributes = $derived(product.attributes.map(attribute => ({
-        ...attribute,
-        options: new Set(product.variants.map(variant => variant.options[attribute.slug]))
-    })));
 
     function existsVariant(slug, value) {
         return product.variants.some(variant => 
@@ -79,10 +74,10 @@
 </p>
 <p>{selectedVariant.description}</p>
 
-{#each attributes as attribute}
+{#each product.attributes as attribute}
     <p>Select {attribute.title}:</p>
     <div class="flex space-x-2 py-2">
-        {#each attribute.options as option}
+        {#each availableOptions(attribute.slug) as option}
             <button
                 class="px-4 {option === selectedVariant.options[attribute.slug] ? "ring" : ""} {existsVariant(attribute.slug, option) ? "" : "text-gray-400"}"
                 onclick={() => selectVariant(attribute.slug, option)}
