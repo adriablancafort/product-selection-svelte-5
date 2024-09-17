@@ -17,7 +17,7 @@
         mouseY = ((event.pageY - top) / height) * 100;
     }
 
-    function availableattributes(slug) {
+    function availableAttributes(slug) {
         // For every option, get all distinct option values that appear in the variants
         return [...new Set(product.variants.map(variant => variant.attributes[slug]))];
     }
@@ -77,7 +77,7 @@
 {#each product.attributes as attribute}
     <p>Select {attribute.title}:</p>
     <div class="flex space-x-2 py-2">
-        {#each availableattributes(attribute.slug) as option}
+        {#each availableAttributes(attribute.slug) as option}
             <button
                 class="px-4 {option === selectedVariant.attributes[attribute.slug] ? "ring" : ""} {existsVariant(attribute.slug, option) ? "" : "text-gray-400"}"
                 onclick={() => selectVariant(attribute.slug, option)}
