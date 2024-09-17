@@ -27,7 +27,7 @@
     ],
     "variants": [
         {
-            "attributes": {
+            "options": {
                 "color": "Black",
                 "size": "M"
             },
@@ -38,7 +38,7 @@
             "discount": 0
         },
         {
-            "attributes": {
+            "options": {
                 "color": "Black",
                 "size": "L"
             },
@@ -49,7 +49,7 @@
             "discount": 15
         },
         {
-            "attributes": {
+            "options": {
                 "color": "White",
                 "size": "M"
             },
@@ -60,7 +60,7 @@
             "discount": 10
         },
         {
-            "attributes": {
+            "options": {
                 "color": "White",
                 "size": "L"
             },
@@ -71,7 +71,7 @@
             "discount": 2
         },
         {
-            "attributes": {
+            "options": {
                 "color": "White",
                 "size": "XL"
             },
@@ -82,7 +82,7 @@
             "discount": 30
         },
         {
-            "attributes": {
+            "options": {
                 "color": "Gray",
                 "size": "L"
             },
@@ -93,7 +93,7 @@
             "discount": 0
         },
         {
-            "attributes": {
+            "options": {
                 "color": "Gray",
                 "size": "M"
             },

@@ -17,28 +17,28 @@
         mouseY = ((event.pageY - top) / height) * 100;
     }
 
-    function availableAttributes(slug) {
+    function availableOptions(slug) {
         // For every option, get all distinct option values that appear in the variants
-        return new Set(product.variants.map(variant => variant.attributes[slug]))
+        return new Set(product.variants.map(variant => variant.options[slug]))
     }
 
     function existsVariant(slug, value) {
         return product.variants.some(variant => 
-            Object.keys(selectedVariant.attributes).every(key => 
+            Object.keys(selectedVariant.options).every(key => 
                 // Each option value matches the selectedVariant except for the option value of the option "slug", that matches the given value
-                key === slug ? variant.attributes[key] === value : variant.attributes[key] === selectedVariant.attributes[key]
+                key === slug ? variant.options[key] === value : variant.options[key] === selectedVariant.options[key]
             )
         );
     }
 
     function selectVariant(slug, value) {
         selectedVariant = product.variants.find(variant =>
-            Object.keys(selectedVariant.attributes).every(key =>
+            Object.keys(selectedVariant.options).every(key =>
                 // Each option value matches the selectedVariant except for the option value of the option "slug", that matches the given value
-                key === slug ? variant.attributes[key] === value : variant.attributes[key] === selectedVariant.attributes[key]
+                key === slug ? variant.options[key] === value : variant.options[key] === selectedVariant.options[key]
             )
-        // If no variants match the selected attributes, assign a variant that matches just the selected value
-        ) || product.variants.find(variant => variant.attributes[slug] === value);
+        // If no variants match the selected options, assign a variant that matches just the selected value
+        ) || product.variants.find(variant => variant.options[slug] === value);
 
         // Update selectedImage based on the new selectedVariant
         selectedImage = selectedVariant.image ? selectedVariant.image - 1 : selectedImage;
@@ -77,9 +77,9 @@
 {#each product.attributes as attribute}
     <p>Select {attribute.title}:</p>
     <div class="flex space-x-2 py-2">
-        {#each availableAttributes(attribute.slug) as option}
+        {#each availableOptions(attribute.slug) as option}
             <button
-                class="px-4 {option === selectedVariant.attributes[attribute.slug] ? "ring" : ""} {existsVariant(attribute.slug, option) ? "" : "text-gray-400"}"
+                class="px-4 {option === selectedVariant.options[attribute.slug] ? "ring" : ""} {existsVariant(attribute.slug, option) ? "" : "text-gray-400"}"
                 onclick={() => selectVariant(attribute.slug, option)}
             >
                 {option}
