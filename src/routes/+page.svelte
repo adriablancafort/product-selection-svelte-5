@@ -22,6 +22,11 @@
         return new Set(product.variants.map(variant => variant.options[slug]))
     }
 
+    let attributes = $derived(product.attributes.map(attribute => ({
+        ...attribute,
+        options: new Set(product.variants.map(variant => variant.options[attribute.slug]))
+    })));
+
     function existsVariant(slug, value) {
         return product.variants.some(variant => 
             Object.keys(selectedVariant.options).every(key => 
@@ -74,10 +79,10 @@
 </p>
 <p>{selectedVariant.description}</p>
 
-{#each product.attributes as attribute}
+{#each attributes as attribute}
     <p>Select {attribute.title}:</p>
     <div class="flex space-x-2 py-2">
-        {#each availableOptions(attribute.slug) as option}
+        {#each attribute.options as option}
             <button
                 class="px-4 {option === selectedVariant.options[attribute.slug] ? "ring" : ""} {existsVariant(attribute.slug, option) ? "" : "text-gray-400"}"
                 onclick={() => selectVariant(attribute.slug, option)}
