@@ -19,7 +19,7 @@
 
     function availableAttributes(slug) {
         // For every option, get all distinct option values that appear in the variants
-        return [...new Set(product.variants.map(variant => variant.attributes[slug]))];
+        return Array.from(new Set(product.variants.map(v => v.attributes[slug])))
     }
 
     function existsVariant(slug, value) {
