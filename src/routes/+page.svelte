@@ -39,7 +39,7 @@
         ) || product.variants.find(variant => variant.options[slug] === value);
 
         // Update selectedImage based on the new selectedVariant
-        selectedImage = selectedVariant.image ? selectedVariant.image : selectedImage;
+        selectedImage = selectedVariant.image;
     }
 
     function addToCart() {
