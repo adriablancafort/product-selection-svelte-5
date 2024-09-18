@@ -11,10 +11,8 @@
 
     let quantity = $state(1);
 
-    let productImage;
-
     function zoomIn() {
-        const { left, top, width, height } = productImage.getBoundingClientRect();
+        const { left, top, width, height } = event.target.getBoundingClientRect();
         mouseX = ((event.pageX - left) / width) * 100;
         mouseY = ((event.pageY - top) / height) * 100;
     }
@@ -56,7 +54,6 @@
         src="{product.images[selectedImage]}" 
         alt="{product.title}"
         class="zoom-image"
-        bind:this={productImage}
         onmousemove={zoomIn} 
         style="--mouse-x: {mouseX}%; --mouse-y: {mouseY}%;"
     >
