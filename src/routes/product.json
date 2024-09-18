@@ -31,7 +31,7 @@
                 "color": "Black",
                 "size": "M"
             },
-            "image": 1,
+            "image": 0,
             "price": 43.68,
             "stock": true,
             "title": "T-Shirt Black M",
@@ -42,7 +42,7 @@
                 "color": "Black",
                 "size": "L"
             },
-            "image": 2,
+            "image": 1,
             "price": 27.21,
             "stock": false,
             "title": "T-Shirt Black L",
@@ -62,20 +62,9 @@
         {
             "options": {
                 "color": "White",
-                "size": "L"
-            },
-            "image": 1,
-            "price": 14.99,
-            "stock": true,
-            "title": "T-Shirt White L",
-            "discount": 2
-        },
-        {
-            "options": {
-                "color": "White",
                 "size": "XL"
             },
-            "image": 3,
+            "image": 1,
             "price": 19.99,
             "stock": true,
             "title": "T-Shirt White XL",
@@ -97,7 +86,7 @@
                 "color": "Gray",
                 "size": "M"
             },
-            "image": 1,
+            "image": 0,
             "price": 19.99,
             "stock": true,
             "title": "T-Shirt Gray M",
