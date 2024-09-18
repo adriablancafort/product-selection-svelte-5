@@ -43,6 +43,11 @@
         // Update selectedImage based on the new selectedVariant
         selectedImage = selectedVariant.image ? selectedVariant.image - 1 : selectedImage;
     }
+
+    function addToCart() {
+        cart.addToCart(product.id, selectedVariant.attributes, quantity, selectedVariant.price);
+        quantity = 1;
+    }
 </script>
 
 <p>Discount: <span class="text-white bg-red-500 px-2">-{selectedVariant.discount}%</span></p>
@@ -62,7 +67,7 @@
             src="{thumbnail}"
             alt="{selectedVariant.title}"
             class="w-16 h-16 cursor-pointer {index === selectedImage ? "ring" : ""}"
-            onmouseenter={() => selectedImage = index}
+            onmouseenter={selectedImage = index}
         >
     {/each}
 </div>
@@ -80,7 +85,7 @@
         {#each availableOptions(attribute.slug) as option}
             <button
                 class="px-4 {option === selectedVariant.options[attribute.slug] ? "ring" : ""} {existsVariant(attribute.slug, option) ? "" : "text-gray-400"}"
-                onclick={() => selectVariant(attribute.slug, option)}
+                onclick={selectVariant(attribute.slug, option)}
             >
                 {option}
             </button>
@@ -89,13 +94,13 @@
 {/each}
 
 <label for="quantity">Quantity:</label>
-<input type="number" min="1" value="{quantity}" oninput={() => quantity = event.target.value}>
+<input type="number" min="1" bind:value={quantity}>
 <br>
 
 {#if selectedVariant.stock}
     <button
         class="bg-blue-500 text-white px-4 py-2 rounded"
-        onclick={() => cart.addToCart( product.id, selectedVariant.attributes, quantity, selectedVariant.price)}
+        onclick={addToCart}
     >
         Add to Cart
     </button>
