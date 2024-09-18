@@ -24,24 +24,22 @@
 
     function existsVariant(slug, value) {
         return product.variants.some(variant => 
-            Object.keys(selectedVariant.options).every(key => 
-                // Each option value matches the selectedVariant except for the option value of the option "slug", that matches the given value
-                key === slug ? variant.options[key] === value : variant.options[key] === selectedVariant.options[key]
+            Object.entries(selectedVariant.options).every(([optionSlug, optionValue]) => 
+                optionSlug === slug ? variant.options[optionSlug] === value : variant.options[optionSlug] === optionValue
             )
         );
     }
 
     function selectVariant(slug, value) {
         selectedVariant = product.variants.find(variant =>
-            Object.keys(selectedVariant.options).every(key =>
-                // Each option value matches the selectedVariant except for the option value of the option "slug", that matches the given value
-                key === slug ? variant.options[key] === value : variant.options[key] === selectedVariant.options[key]
+            Object.entries(selectedVariant.options).every(([optionSlug, optionValue]) =>
+                optionSlug === slug ? variant.options[optionSlug] === value : variant.options[optionSlug] === optionValue
             )
         // If no variants match the selected options, assign a variant that matches just the selected value
         ) || product.variants.find(variant => variant.options[slug] === value);
 
         // Update selectedImage based on the new selectedVariant
-        selectedImage = selectedVariant.image ? selectedVariant.image - 1 : selectedImage;
+        selectedImage = selectedVariant.image ? selectedVariant.image : selectedImage;
     }
 
     function addToCart() {
