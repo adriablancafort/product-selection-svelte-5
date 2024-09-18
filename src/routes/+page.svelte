@@ -52,7 +52,7 @@
 <div class="overflow-hidden">
     <img
         src="{product.images[selectedImage]}" 
-        alt="{selectedVariant.title}"
+        alt="{product.title}"
         class="zoom-image"
         onmousemove={zoomIn} 
         style="--mouse-x: {mouseX}%; --mouse-y: {mouseY}%;"
@@ -63,14 +63,14 @@
     {#each product.thumbnails as thumbnail, index}
         <img 
             src="{thumbnail}"
-            alt="{selectedVariant.title}"
+            alt="{product.title}"
             class="w-16 h-16 cursor-pointer {index === selectedImage ? "ring" : ""}"
             onmouseenter={selectedImage = index}
         >
     {/each}
 </div>
 
-<h1 class="text-4xl">{selectedVariant.title}</h1>
+<h1 class="text-4xl">{product.title}</h1>
 <p>Price: ${selectedVariant.price}</p>
 <p class="{selectedVariant.stock ? "text-green-500" : "text-red-500"}">
     {selectedVariant.stock ? "In Stock" : "Out of Stock"}
